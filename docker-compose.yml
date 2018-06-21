@@ -1,0 +1,35 @@
+version: '2'
+services:
+    mariadb:
+      image: mariadb:10.2
+      environment:
+        MYSQL_ROOT_PASSWORD: i34dbkub
+        MYSQL_DATABASE: delivery
+        MYSQL_USER: delivery
+        MYSQL_PASSWORD: delivery
+      logging:
+        driver: syslog
+        options:
+          tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+      networks:
+        - backend
+      restart: on-failure
+      volumes:
+        - ${PWD}/mariadb:/var/lib/mysql
+    jliveryws:
+      build: .
+      volumes:
+        - $PWD:/jliveryws
+      ports:
+        - 3001:3000
+      command: bash -l -c 'yarn install && yarn start'
+      links:
+        - mariadb
+      depends_on:
+        - mariadb
+      networks:
+        - backend
+
+networks:       
+  backend:
+    driver: bridge
