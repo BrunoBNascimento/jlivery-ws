@@ -1,0 +1,2 @@
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.0.0.%' IDENTIFIED BY 'i34dbkub' WITH GRANT OPTION;
+flush privileges;

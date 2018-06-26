@@ -7,6 +7,8 @@ services:
         MYSQL_DATABASE: delivery
         MYSQL_USER: delivery
         MYSQL_PASSWORD: delivery
+      ports:
+        - "3306:3306"
       logging:
         driver: syslog
         options:
@@ -16,10 +18,11 @@ services:
       restart: on-failure
       volumes:
         - ${PWD}/mariadb:/var/lib/mysql
+        - ${PWD}/config:/config
     jliveryws:
       build: .
       volumes:
-        - $PWD:/jliveryws
+        - ${PWD}:/jliveryws
       ports:
         - 3001:3000
       command: bash -l -c 'yarn install && yarn start'
