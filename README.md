@@ -7,4 +7,4 @@ Como fazer o deploy no ambiente de DEV(local)?
 3. Rode o comando `docker stop $(docker ps -a -q)`
 4. Rode o comando `docker-compose up`
 5. Ao acessar `http://localhost:3001/users` deve ser mostrado o json de usuarios
-6. O Jenkins vai fazer automaticamente os builds caso você commite na master
+6. O Jenkins vai fazer o trigger automaticamente os builds caso você commite na master
