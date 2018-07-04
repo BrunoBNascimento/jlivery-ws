@@ -24,7 +24,7 @@ services:
       volumes:
         - ${PWD}:/jliveryws
       ports:
-        - 3001:3000
+        - 80:3000
       command: bash -l -c 'yarn install && yarn start'
       links:
         - mariadb
